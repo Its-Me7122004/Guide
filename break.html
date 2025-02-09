@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Chill Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(45deg, #2193b0, #6dd5ed);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+        }
+
+        .spot {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #2193b0;
+        }
+
+        .spot h3 {
+            color: #2193b0;
+            margin-bottom: 10px;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin: 5px;
+            color: #495057;
+        }
+
+        .food-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #6dd5ed;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .food-info {
+            flex: 1;
+        }
+
+        .rating {
+            background: #2193b0;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .price-range {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            header {
+                padding: 20px 0;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎓 Campus Chill Guide</h1>
+            <p>Your ultimate guide to the best hangout spots and food places!</p>
+        </header>
+
+        <div class="section">
+            <h2>🌳 Chill Spots on Campus</h2>
+            
+            <div class="spot">
+                <h3>The Library Courtyard</h3>
+                <p>A peaceful oasis with benches and shade trees. Perfect for studying or catching up with friends.</p>
+                <div class="tags">
+                    <span class="tag">Outdoor</span>
+                    <span class="tag">Quiet</span>
+                    <span class="tag">Wi-Fi Available</span>
+                </div>
+            </div>
+
+            <div class="spot">
+                <h3>Butterfly Garden</h3>
+                <p>A paradise of blossoms and a great atmosphere. The go-to spot for between-class breaks.</p>
+                <div class="tags">
+                    <span class="tag">Outdoor</span>
+                    <span class="tag">Social</span>
+                    <span class="tag">Nature-friendly</span>
+                </div>
+            </div>
+
+            <div class="spot">
+                <h3>Chavara Garden</h3>
+                <p>A serene and nature-friendly venue where people can gather, celebrate and conduct inspiring programes admist lush greenery and refreshing ambiance.</p>
+                <div class="tags">
+                    <span class="tag">Outdoor</span>
+                    <span class="tag">Scenic</span>
+                    <span class="tag">Instagram-worthy</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🍽️ Nearby Food Spots</h2>
+            
+            <div class="food-card">
+                <div class="food-info">
+                    <h3>Dr.Cafe</h3>
+                    <p>Amazing coffee,pastas and chinese dishes </p>
+                    <span class="price-range">Expensive</span>
+                    <div class="tags">
+                        <span class="tag">Coffee</span>
+                        <span class="tag">Instagram-worthy</span>
+                        <span class="tag">Wi-Fi</span>
+                    </div>
+                </div>
+                <span class="rating">4.5/5</span>
+            </div>
+
+            <div class="food-card">
+                <div class="food-info">
+                    <h3>Burnight</h3>
+                    <p>Best shwarma spot in town!</p>
+                    <span class="price-range">Budget-friendly</span>
+                    <div class="tags">
+                        <span class="tag">Burgers</span>
+                        <span class="tag">shwarmas</span>
+                        <span class="tag">Late Night</span>
+                    </div>
+                </div>
+                <span class="rating">4.4/5</span>
+            </div>
+
+            <div class="food-card">
+                <div class="food-info">
+                    <h3>Eatya</h3>
+                    <p>Cheesy filled loaded fries. Perfect destination with friends!</p>
+                    <span class="price-range">Budget-friendly</span>
+                    <div class="tags">
+                        <span class="tag">Loaded fries</span>
+                        <span class="tag">Black tea</span>
+                        <span class="tag">Evening</span>
+                    </div>
+                </div>
+                <span class="rating">4.7/5</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

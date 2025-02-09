@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Productivity Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --danger: #ef4444;
+            --success: #10b981;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .timer {
+            font-size: 48px;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: bold;
+            cursor: pointer;
+            color: var(--accent);
+            font-family: monospace;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: var(--accent);
+            color: var(--text-primary);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: var(--accent-hover);
+        }
+
+        .task-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--text-secondary);
+            border-radius: 5px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .tasks {
+            list-style: none;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background: var(--bg-primary);
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .task-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+        }
+
+        h1, h2 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .stat-card {
+            background: var(--bg-primary);
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .study-session {
+            padding: 10px;
+            margin: 5px 0;
+            background: var(--bg-primary);
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: var(--bg-primary);
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .subject-tag {
+            background: var(--accent);
+            color: var(--text-primary);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+
+        select {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid var(--text-secondary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card full-width">
+            <h1>📚 Student Productivity Hub</h1>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalTime">0h</div>
+                    <div>Study Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="completedTasks">0</div>
+                    <div>Tasks Done</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="focusSessions">0</div>
+                    <div>Sessions</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>⏰ Study Timer</h2>
+            <select id="timerType">
+                <option value="1500">25min - Focus</option>
+                <option value="300">5min - Short Break</option>
+                <option value="900">15min - Long Break</option>
+            </select>
+            <div class="timer" id="timer">25:00</div>
+            <div class="controls">
+                <button id="start">Start</button>
+                <button id="reset">Reset</button>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📝 Tasks</h2>
+            <input type="text" class="task-input" placeholder="Add task + subject (e.g., Read Chapter 3 #Math)">
+            <ul class="tasks" id="taskList"></ul>
+        </div>
+
+        <div class="card full-width">
+            <h2>📊 Study Sessions</h2>
+            <div id="sessions"></div>
+        </div>
+    </div>
+
+    <script src="study.js">
+        
+        
+    </script>
+</body>
+</html>
